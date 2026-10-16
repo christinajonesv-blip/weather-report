@@ -1,0 +1,166 @@
+.app {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 25px;
+  background: #faf5f0;
+  color: #40213a;
+  border-radius: 12px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #70445d;
+  border-radius: 6px;
+}
+
+button {
+  margin-left: 8px;
+  padding: 10px 15px;
+  background: #40213a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.weather {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0d8e7;
+  border-radius: 8px;
+}
+
+/* Smooth page entrance */
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pageEnter 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Weather card entrance and floating animation */
+.weather-box {
+  animation: cardEnter 1s ease-out, floatCard 4s ease-in-out 1s infinite;
+  transition: box-shadow 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.weather-box:hover {
+  box-shadow: 0 15px 40px rgba(112, 68, 93, 0.2);
+}
+
+/* Heading animation */
+.weather-box h1 {
+  animation: headingEnter 1s ease-out;
+}
+
+/* Smooth input interaction */
+.weather-box input {
+  transition: all 0.3s ease;
+}
+
+.weather-box input:focus {
+  outline: none;
+  transform: scale(1.02);
+  box-shadow: 0 0 12px rgba(112, 68, 93, 0.3);
+}
+
+/* Satisfying search button */
+.weather-box button {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.weather-box button:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 15px rgba(112, 68, 93, 0.25);
+}
+
+.weather-box button:active {
+  transform: scale(0.94);
+}
+
+/* Weather results appear smoothly */
+.weather {
+  animation: resultEnter 0.7s ease-out;
+}
+
+.weather h2 {
+  animation: headingEnter 0.8s ease-out;
+}
+
+/* Keyframes */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes headingEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes resultEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .app,
+  .weather-box,
+  .weather-box h1,
+  .weather,
+  .weather h2 {
+    animation: none;
+  }
+
+  .weather-box input,
+  .weather-box button {
+    transition: none;
+  }
+}
